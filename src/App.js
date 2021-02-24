@@ -12,14 +12,15 @@ function App() {
       <Router>
         <Container>
           <Header />
-          
           <Main>
             <Sidebar>
 
             </Sidebar>
             <Switch>
               <Route path="/room">
-                <Chat />
+              {/* <div className="app_body"> */}
+              <Chat />
+              {/* </div> */}
               </Route>
               <Route path="/">
                 <Login />

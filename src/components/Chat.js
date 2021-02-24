@@ -1,74 +1,55 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import StarBorderIcon from '@material-ui/icons/StarBorder';
-import InfoIcon from '@material-ui/icons/Info';
+import StarBorderOutlinedIcon from '@material-ui/icons/StarBorderOutlined';
+import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import Icon from '@mdi/react';
 import { mdiPound } from '@mdi/js';
+import "../components/Chat.css";
 
 function Chat() {
     return (
         <div>
-            <Container>
-                <Details>
-                    <Image>
-                        <Icon path={mdiPound} title="channel" size={0.60} horizontal vertical color="darkblue"/>  
-                    </Image>
-                    <Font>    
-                        <label>General</label>
-                    </Font>
-                <StarBorderIcon />
-                <Font>    
-                    <label>Details</label>
-                </Font>
-                <InfoIcon/>
-                </Details>
-            </Container>
+            <ChatRoom>
+                <ChatHeader>
+                    <div className="chat_header_left">
+                        <ChannelName>
+                            <strong>⚔general-meeting</strong>
+                            <StarBorderOutlinedIcon />
+                        </ChannelName>
+                        <p className="chat_small_details">
+                            Announcements from the castle to the people
+                        </p>
+                    </div>
+                    <div className="chat_header_right">
+                        <p><InfoOutlinedIcon /> Details </p>
+                    </div>
+                </ChatHeader>
+            </ChatRoom>
         </div>
     )
 }
 
 export default Chat
 
-const Container = styled.div `
-    background: #ffffff;
+const ChatRoom = styled.div `
+    flex: 0.7;
+    flex-grow: 1;
+    overflow-y: scroll;
+    padding-bottom: 150px;
+`
+
+const ChatHeader = styled.div `
     display: flex;
-    position: relative;
-    z-index: 10;
-    padding-bottom: 42px;
-    border-bottom: 1px solid #708090;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid lightgray;
 `
 
-const Details = styled.div `
+const ChannelName = styled.div `
     display: flex;
-    color: black;
-    margin-right: 16px;
-    margin-left: 16px;
-    line-height: 2;
-    font-family: Berlin Sans FB;
-    font-style: italic;
+    text-transform: lowercase;
 `
 
-const Button = styled.div `
-    display: block;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    user-select: text;
-    color: black;
-`
 
-const Font = styled.div `
-    padding-right: 10px;
-`
-
-const Image = styled.div`
-`
-
-const UserImages = styled.div`
-`
-
-const UserImage = styled.div`
-`
-
-const Name = styled.div`
-`
 

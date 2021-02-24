@@ -29,29 +29,47 @@ function Sidebar() {
             <ChannelsContainer>
                 <NewChannelContainer>
                     <div>
-                        Worlds
+                        Channels
                     </div>
                     <AddIcon />
 
                 </NewChannelContainer>
                 <ChannelList>
                     <Channel>
-                        # World of Awakening 
+                        ⚔ general-meeting 
                     </Channel>
                     <Channel>
-                        # World of Fates
+                        ⚔ world-of-awakening
                     </Channel>
                     <Channel>
-                        # World of Mystery
+                        ⚔ world-of-fates
                     </Channel>
                     <Channel>
-                        # World of Radiance
+                        ⚔ world-of-mystery
                     </Channel>
                     <Channel>
-                        # World of Binding
+                        ⚔ world-of-radiance
                     </Channel>
                     <Channel>
-                        # World of Blazing
+                        ⚔ world-of-binding
+                    </Channel>
+                    <Channel>
+                        ⚔ world-of-blazing
+                    </Channel>
+                    <Channel>
+                        ⚔ world-of-sacred
+                    </Channel>
+                    <Channel>
+                        ⚔ world-of-holy
+                    </Channel>
+                    <Channel>
+                        ⚔ world-of-thracia
+                    </Channel>
+                    <Channel>
+                        ⚔ world-of-valentia
+                    </Channel>
+                    <Channel>
+                        ⚔ world-of-three-houses
                     </Channel>
                 </ChannelList>
             </ChannelsContainer>
@@ -63,7 +81,8 @@ function Sidebar() {
 export default Sidebar
 
 const Container = styled.div `
-    background: #87cefa;
+    // background: #87cefa;
+    background-image: linear-gradient(#00B0F0, #DEEBF7);
 `
 
 const WorkspaceContainer = styled.div `
@@ -77,7 +96,7 @@ const WorkspaceContainer = styled.div `
 `
 
 const Name = styled.div `
-    
+    text-shadow: 2px 2px #0000FF;
 `
 
 const NewMessage = styled.div `
@@ -99,7 +118,7 @@ const MainChannel = styled.div `
 `
 
 const MainChannelItem = styled.div `
-    color: rgb(0,255,255);
+    color: rgb(100,100,255);
     display: grid;
     grid-template-columns: 15% auto;
     height: 28px;
@@ -108,11 +127,12 @@ const MainChannelItem = styled.div `
     cursor: pointer;
     :hover {
         background:  #0072A0;
+        color: white;
     }
 `
 
 const ChannelsContainer = styled.div `
-    color: rgb(50,140,255);
+    color: rgb(14,0,255);
     margin-top: 10px;
 `
 
@@ -136,5 +156,6 @@ const Channel = styled.div `
     cursor: pointer;
     :hover {
         background: #0072A0;
+        color: white;
     }
 `
