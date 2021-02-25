@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import UserImages from '../images/user.png';
+import '../components/Header.css';
 
 function Header() {
     return (
@@ -25,13 +26,14 @@ function Header() {
                 </UserImage>
             </UserContainer>
         </Container>
+
     )
 }
 
 export default Header
 
 const Container = styled.div `
-    background: #00ABF0;
+    background: #00B0F0;
     color: white;
     display: flex;
     align-items: center;
@@ -54,7 +56,7 @@ const SearchContainer = styled.div `
 `
 
 const Search = styled.div `
-    box-shadow: inset 0 0 0 1px rgb(104 74 104);
+    box-shadow: inset 0 0 0 1px white;
     width: 100%;
     border-radius: 6px;
     display: flex;
@@ -62,10 +64,11 @@ const Search = styled.div `
 
     input {
         background-color: transparent;
+        flex: 1;
         border: none;
         padding-left: 8px;
         padding-right: 8px;
-        color: white;
+        color: blue;
         padding-top: 4px;
         padding-bottom: 4px;
     }

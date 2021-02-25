@@ -7,6 +7,8 @@ import Header from './components/Header'
 import styled from 'styled-components'
 import Sidebar from './components/Sidebar'
 import db from './firebase'
+import Emoji from 'react-emoji-render';
+
 
 function App() {
 

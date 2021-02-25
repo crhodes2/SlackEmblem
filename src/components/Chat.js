@@ -1,38 +1,37 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import StarBorderOutlinedIcon from '@material-ui/icons/StarBorderOutlined';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
-import Icon from '@mdi/react';
-import { mdiPound } from '@mdi/js';
-import "../components/Chat.css";
-import ChatInput from './ChatInput';
+import ChatInput from './ChatInput'
+import ChatMessage from './ChatMessage'
+import '../components/Chat.css';
 
 function Chat() {
     return (
-        <div>
-            <Container>
-                <ChatHeader>
-                    <div className="chat_header_left">
-                        <ChannelName>
-                            <strong>⚔general-meeting</strong>
-                            <StarBorderOutlinedIcon />
-                        </ChannelName>
-                        <p className="chat_small_details">
-                            Announcements from the castle to the people
-                        </p>
+        <Container>
+            {/* Header */}
+            <Header>
+                <Channel>
+                    <ChannelName>
+                    ⚔ general-meeting <Star />
+                    </ChannelName>
+                    <ChannelInfo>
+                    Announcements from the castle to the people
+                    </ChannelInfo>
+                </Channel>
+                <ChannelDetails>
+                    <div>
+                        Details
                     </div>
-                    <div className="chat_header_right">
-                        <p>Details <Info /> </p>
-                    </div>
-                </ChatHeader>
-                <MessageContainer>
+                    <Info />
+                </ChannelDetails>
+            </Header>
 
-                </MessageContainer>
-                <ChatInput>
-
-                </ChatInput>
-            </Container>
-        </div>
+            <MessageContainer>
+                <ChatMessage/>
+            </MessageContainer>
+            <ChatInput />
+        </Container>
     )
 }
 
@@ -42,59 +41,46 @@ const Container = styled.div `
     display: grid;
     grid-template-rows: 64px auto min-content;
 `
-const Channel = styled.div `
 
+const Channel = styled.div `   
 `
-const ChannelName = styled.div `
-    font-weight: 700;
-    // display: flex;
-    // text-transform: lowercase;
-`
+
 const ChannelDetails = styled.div `
     display: flex;
     align-items: center;
+    color: #606060;
 `
-
+const ChannelName = styled.div `
+    display: flex;
+    font-weight: 700;
+`
 const ChannelInfo = styled.div `
     font-weight: 400;
     color: #606060;
     font-size: 13px;
     margin-top: 8px;
 `
-
+const Info = styled(InfoOutlinedIcon)`
+    margin-left: 10px;
+`
+const Star = styled(StarBorderOutlinedIcon)`
+    margin-left: 5px;
+`
 const Header = styled.div `
     padding-left: 20px;
     padding-right: 20px;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid rgba(83, 39, 83, .13);
+    border-bottom: 1px solid rgba(83,39,83,.13);
     justify-content: space-between;
+    background: #66ccff70;
 `
-
 
 const MessageContainer = styled.div `
 
+
 `
 
-
-
-const ChatRoom = styled.div `
-    flex: 0.7;
-    flex-grow: 1;
-    overflow-y: scroll;
-    padding-bottom: 150px;
-`
-
-const ChatHeader = styled.div `
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px;
-    border-bottom: 1px solid lightgray;
-`
-const Info = styled(InfoOutlinedIcon)`
-    margin-left: 10px;
-`
 
 
 

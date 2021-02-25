@@ -15,6 +15,7 @@
     "firebase-tools": "^9.5.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-emoji-render": "^1.2.4",
     "react-native-emoji": "^1.8.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
