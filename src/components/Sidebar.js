@@ -4,7 +4,8 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import {sidebarItemsData} from '../data/SidebarData'
 import AddIcon from '@material-ui/icons/Add';
 
-function Sidebar() {
+function Sidebar(props) {
+
     return (
         <Container>
             <WorkspaceContainer>
@@ -35,42 +36,13 @@ function Sidebar() {
 
                 </NewChannelContainer>
                 <ChannelList>
-                    <Channel>
-                        ⚔ general-meeting 
-                    </Channel>
-                    <Channel>
-                        ⚔ world-of-awakening
-                    </Channel>
-                    <Channel>
-                        ⚔ world-of-fates
-                    </Channel>
-                    <Channel>
-                        ⚔ world-of-mystery
-                    </Channel>
-                    <Channel>
-                        ⚔ world-of-radiance
-                    </Channel>
-                    <Channel>
-                        ⚔ world-of-binding
-                    </Channel>
-                    <Channel>
-                        ⚔ world-of-blazing
-                    </Channel>
-                    <Channel>
-                        ⚔ world-of-sacred
-                    </Channel>
-                    <Channel>
-                        ⚔ world-of-holy
-                    </Channel>
-                    <Channel>
-                        ⚔ world-of-thracia
-                    </Channel>
-                    <Channel>
-                        ⚔ world-of-valentia
-                    </Channel>
-                    <Channel>
-                        ⚔ world-of-three-houses
-                    </Channel>
+                    {
+                        props.rooms.map(item => (
+                            <Channel>
+                            ⚔ {item.name} 
+                            </Channel>
+                        ))
+                    }
                 </ChannelList>
             </ChannelsContainer>
         
