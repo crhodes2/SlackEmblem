@@ -1,19 +1,19 @@
 import React from 'react'
 import styled from 'styled-components'
 
-function ChatMessage() {
+function ChatMessage({ text, name, image, timestamp }) {
     return (
         <Container>
             <UserAvatar>
-                <img src="https://static.wikia.nocookie.net/feheroes_gamepedia_en/images/3/3e/Marth_Altean_Prince_Face_FC.webp"/>
+                <img src={image} />
             </UserAvatar>
             <MessageContent>
                 <Name>
-                    Marth of Altea
-                    <span>2/23/2021 11:23:22 AM</span>
+                    {name}
+                    <span>{new Date(timestamp.toDate()).toUTCString()}</span>
                 </Name>
                 <Text>
-                    My prayers are with you!
+                    {text}
                 </Text>
             </MessageContent>
         </Container>

@@ -1,22 +1,69 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import StarBorderOutlinedIcon from '@material-ui/icons/StarBorderOutlined';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import ChatInput from './ChatInput'
 import ChatMessage from './ChatMessage'
-import '../components/Chat.css';
+import db from '../firebase'
+import { useParams } from 'react-router-dom'
+import firebase from "firebase"
+import '../components/Chat.css'
+import StarBorderOutlinedIcon from '@material-ui/icons/StarBorderOutlined';
 
-function Chat() {
+function Chat({ user }) {
+
+    let { channelId } = useParams();
+    const [ channel, setChannel ] = useState();
+    const [messages, setMessages ] = useState([])
+
+    const getMessages = () => {
+        db.collection('rooms')
+        .doc(channelId)
+        .collection('messages')
+        .orderBy('timestamp', 'asc')
+        .onSnapshot((snapshot)=>{
+            let messages = snapshot.docs.map((doc)=> doc.data());
+            console.log(messages);
+            setMessages(messages);
+        })
+    }
+
+    const sendMessage = (text) => {
+        if(channelId){
+            let payload = {
+                text: text,
+                timestamp: firebase.firestore.Timestamp.now(),
+                user: user.name,
+                userImage: user.photo
+            }
+            db.collection("rooms").doc(channelId).collection('messages').add(payload);
+            
+            console.log(payload);
+        }
+
+    }
+
+    const getChannel = () => {
+        db.collection('rooms')
+        .doc(channelId)
+        .onSnapshot((snapshot)=>{
+            setChannel(snapshot.data());
+        })
+    }
+
+    useEffect(()=>{
+        getChannel();
+        getMessages();
+    }, [channelId])
+
     return (
         <Container>
-            {/* Header */}
             <Header>
                 <Channel>
                     <ChannelName>
-                    ⚔ general-meeting <Star />
+                        ⚔ { channel && channel.name}
                     </ChannelName>
                     <ChannelInfo>
-                    Announcements from the castle to the people
+                    Company-wide announcements and work-based matters
                     </ChannelInfo>
                 </Channel>
                 <ChannelDetails>
@@ -26,11 +73,20 @@ function Chat() {
                     <Info />
                 </ChannelDetails>
             </Header>
-
             <MessageContainer>
-                <ChatMessage/>
+                {
+                    messages.length > 0 &&
+                    messages.map((data, index)=>(
+                        <ChatMessage
+                            text={data.text}
+                            name={data.user}
+                            image={data.userImage}
+                            timestamp={data.timestamp}
+                        />
+                    ))
+                }
             </MessageContainer>
-            <ChatInput />
+            <ChatInput sendMessage={sendMessage} />
         </Container>
     )
 }
@@ -40,6 +96,7 @@ export default Chat
 const Container = styled.div `
     display: grid;
     grid-template-rows: 64px auto min-content;
+    min-height: 0;
 `
 
 const Channel = styled.div `   
@@ -77,8 +134,9 @@ const Header = styled.div `
 `
 
 const MessageContainer = styled.div `
-
-
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
 `
 
 

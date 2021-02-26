@@ -8,24 +8,35 @@ import styled from 'styled-components'
 import Sidebar from './components/Sidebar'
 import db from './firebase'
 import Emoji from 'react-emoji-render';
+import { auth, provider } from "./firebase";
 
 
 function App() {
 
-  const [rooms, setRooms] = useState([])
+  const [ rooms, setRooms] = useState([])
+  const [ user, setUser ] = useState(JSON.parse(localStorage.getItem('user')));
 
   const getChannels = () => {
     db.collection('rooms').onSnapshot((snapshot) => {
       setRooms(snapshot.docs.map((doc) => {
-        return {id: doc.id, name: doc.data().name }
+        return {id: doc.id, name: doc.data().name, description: doc.data().describe }
       }))
     })
   }
 
+  const signOut = () => {
+    auth.signOut().then(()=>{
+      localStorage.removeItem('user');
+      setUser(null);
+    })
+  }
+
   useEffect(() => {
-    console.log(rooms);
     getChannels();
   }, [])
+
+  console.log("User in app state", user);
+
 
   
 
@@ -33,22 +44,24 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Container>
-          <Header />
-          <Main>
-             <Sidebar rooms={rooms} />
-            <Switch>
-              <Route path="/room">
-              {/* <div className="app_body"> */}
-              <Chat />
-              {/* </div> */}
-              </Route>
-              <Route path="/">
-                <Login />
-              </Route>
-            </Switch>         
-          </Main>
+        {
+          !user ?
+          <Login setUser = {setUser}/>
+          :
+          <Container>
+            <Header user={user} signOut={signOut} />
+            <Main>
+              <Sidebar rooms={rooms} />
+              <Switch>
+                <Route path="/room/:channelId">
+                {/* <div className="app_body"> */}
+                <Chat user= {user} />
+                {/* </div> */}
+                </Route>
+              </Switch>         
+            </Main>
         </Container>
+        }
       </Router>
     </div>
   );
@@ -60,7 +73,7 @@ const Container = styled.div `
   width: 100%;
   height: 100vh;
   display: grid;
-  grid-template-rows: 38px auto;
+  grid-template-rows: 38px minmax(0, 1fr);
 `
 
 const Main = styled.div `
