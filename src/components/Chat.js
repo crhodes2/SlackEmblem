@@ -63,7 +63,7 @@ function Chat({ user }) {
                         ⚔ { channel && channel.name}
                     </ChannelName>
                     <ChannelInfo>
-                    Company-wide announcements and work-based matters
+                    {channel && channel.describe}
                     </ChannelInfo>
                 </Channel>
                 <ChannelDetails>
