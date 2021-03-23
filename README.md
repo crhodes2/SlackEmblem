@@ -18,6 +18,9 @@ The professional knights, magicians, and royalties from the Fire Emblem game ser
 https://slackemblem.web.app/
 ```
 
+## How to Use the App
+Simply log in using your Google user credentials and you're good to go.
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
